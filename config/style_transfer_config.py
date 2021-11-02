@@ -11,11 +11,11 @@ contentLayers = ["block4_conv2"]
 
 # define the list of style layer blocks from our pre-trained CNN
 styleLayers = [
-	"block1_conv1",
-	"block2_conv1",
-	"block3_conv1",
-	"block4_conv1",
-	"block5_conv1"
+    "block1_conv1",
+    "block2_conv1",
+    "block3_conv1",
+    "block4_conv1",
+    "block5_conv1"
 ]
 
 # define the style weight, content weight, and total-variational
