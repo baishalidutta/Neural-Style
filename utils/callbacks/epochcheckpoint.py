@@ -8,14 +8,14 @@ from tensorflow.keras.callbacks import Callback
 import os
 
 class EpochCheckpoint(Callback):
-	def __init__(self, outputPath, every=5, startAt=0):
+	def __init__(self, output_path, every=5, startAt=0):
 		# call the parent constructor
 		super(Callback, self).__init__()
 
 		# store the base output path for the model, the number of
 		# epochs that must pass before the model is serialized to
 		# disk and the current epoch value
-		self.outputPath = outputPath
+		self.output_path = output_path
 		self.every = every
 		self.intEpoch = startAt
 
