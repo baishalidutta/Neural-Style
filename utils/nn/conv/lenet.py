@@ -1,4 +1,8 @@
-# import the necessary packages
+__author__ = "Baishali Dutta"
+__copyright__ = "Copyright (C) 2021-2022 Baishali Dutta"
+__license__ = "Apache License 2.0"
+__version__ = "0.1"
+
 from tensorflow.keras import backend as K
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Activation, Flatten, Dense
 from tensorflow.keras.models import Sequential

@@ -1,4 +1,8 @@
-# import the necessary packages
+__author__ = "Baishali Dutta"
+__copyright__ = "Copyright (C) 2021-2022 Baishali Dutta"
+__license__ = "Apache License 2.0"
+__version__ = "0.1"
+
 from tensorflow.keras import backend as K
 from tensorflow.keras.layers import BatchNormalization, Conv2D, AveragePooling2D, MaxPooling2D, Activation, Dropout, \
     Dense, Flatten, Input, concatenate
