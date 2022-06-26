@@ -3,8 +3,8 @@ __copyright__ = "Copyright (C) 2021-2022 Baishali Dutta"
 __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
-from tensorflow.keras.applications import imagenet_utils
 import imutils
+from tensorflow.keras.applications import imagenet_utils
 
 
 def sliding_window(image, step, ws):
