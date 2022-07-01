@@ -35,8 +35,8 @@ def loadImage(imagePath):
 
     # scale back the new shape, cast it to an integer, resize the
     # image to the new shape, and  add a batch dimension
-    newShape = tf.cast(shape * scale, tf.int32)
-    image = tf.image.resize(image, newShape)
+    new_shape = tf.cast(shape * scale, tf.int32)
+    image = tf.image.resize(image, new_shape)
     image = image[tf.newaxis, :]
 
     # return the resized image
@@ -46,8 +46,8 @@ def loadImage(imagePath):
 @tf.function
 def trainOneStep(image, styleTargets, contentTargets):
     # derive the style and content loss weight values
-    styleWeight = config.styleWeight / len(config.styleLayers)
-    contentWeight = config.contentWeight / len(config.contentLayers)
+    style_weight = config.styleWeight / len(config.styleLayers)
+    content_weight = config.contentWeight / len(config.contentLayers)
 
     # keep track of our gradients
     with tf.GradientTape() as tape:
@@ -56,7 +56,7 @@ def trainOneStep(image, styleTargets, contentTargets):
         # variational loss to regularize it
         outputs = extractor(image)
         loss = extractor.styleContentLoss(outputs, styleTargets,
-                                          contentTargets, styleWeight, contentWeight)
+                                          contentTargets, style_weight, content_weight)
         loss += config.tvWeight * tf.image.total_variation(image)
 
     # grab the gradients of the loss with respect to the image and
