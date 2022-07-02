@@ -44,10 +44,10 @@ def loadImage(imagePath):
 
 
 @tf.function
-def trainOneStep(image, styleTargets, contentTargets):
+def trainOneStep(image, style_targets, content_targets):
     # derive the style and content loss weight values
-    style_weight = config.styleWeight / len(config.styleLayers)
-    content_weight = config.contentWeight / len(config.contentLayers)
+    style_weight = config.style_weight / len(config.style_layers)
+    content_weight = config.content_weight / len(config.content_layers)
 
     # keep track of our gradients
     with tf.GradientTape() as tape:
@@ -55,8 +55,8 @@ def trainOneStep(image, styleTargets, contentTargets):
         # get its features, determine the loss, and add total
         # variational loss to regularize it
         outputs = extractor(image)
-        loss = extractor.styleContentLoss(outputs, styleTargets,
-                                          contentTargets, style_weight, content_weight)
+        loss = extractor.styleContentLoss(outputs, style_targets,
+                                          content_targets, style_weight, content_weight)
         loss += config.tvWeight * tf.image.total_variation(image)
 
     # grab the gradients of the loss with respect to the image and
@@ -73,36 +73,36 @@ opt = tf.optimizers.Adam(learning_rate=0.01, beta_1=0.99,
 
 # load the content and style images
 print("[INFO] loading content and style images...")
-contentImage = loadImage(config.contentImage)
-styleImage = loadImage(config.styleImage)
+content_image = loadImage(config.content_image)
+style_image = loadImage(config.style_image)
 
 # grab the contents layer from which feature maps will be extracted
 # along with the style layer blocks
-contentLayers = config.contentLayers
-styleLayers = config.styleLayers
+content_layers = config.content_layers
+style_layers = config.style_layers
 
 # initialize the our network to extract features from the style and
 # content images
 print("[INFO] initializing off the extractor network...")
-extractor = NeuralStyle(styleLayers, contentLayers)
+extractor = NeuralStyle(style_layers, content_layers)
 
 # extract the features from the style and content images
-styleTargets = extractor(styleImage)["style"]
-contentTargets = extractor(contentImage)["content"]
+style_targets = extractor(style_image)["style"]
+content_targets = extractor(content_image)["content"]
 
 # initialize the content image as a TensorFlow variable along with
 # the total number of steps taken in the current epoch
 print("[INFO] training the style transfer model...")
-image = tf.Variable(contentImage)
+image = tf.Variable(content_image)
 step = 0
 
 # loop over the number of epochs
 for epoch in range(config.epochs):
     # loop over the number of steps in the epoch
-    for i in range(config.stepsPerEpoch):
+    for i in range(config.steps_per_epoch):
         # perform a single training step, then increment our step
         # counter
-        trainOneStep(image, styleTargets, contentTargets)
+        trainOneStep(image, style_targets, content_targets)
         step += 1
 
     # construct the path to the intermediate resulting image (for
@@ -110,8 +110,8 @@ for epoch in range(config.epochs):
     print("[INFO] training step: {}".format(step))
     p = "_".join([str(epoch), str(i)])
     p = "{}.png".format(p)
-    p = os.path.join(config.intermOutputs, p)
+    p = os.path.join(config.interm_outputs, p)
     extractor.tensorToImage(image).save(p)
 
 # save the final stylized image
-extractor.tensorToImage(image).save(config.finalImage)
+extractor.tensorToImage(image).save(config.final_image)
