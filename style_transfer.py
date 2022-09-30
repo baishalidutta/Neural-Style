@@ -30,8 +30,8 @@ def loadImage(imagePath):
     # determine the larger dimension between height and width, and
     # determine the scaling factor
     shape = tf.cast(tf.shape(image)[:-1], tf.float32)
-    longDim = max(shape)
-    scale = maxDim / longDim
+    long_dim = max(shape)
+    scale = maxDim / long_dim
 
     # scale back the new shape, cast it to an integer, resize the
     # image to the new shape, and  add a batch dimension
