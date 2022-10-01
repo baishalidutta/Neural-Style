@@ -47,7 +47,7 @@ class HDF5DatasetGenerator:
                 # check to see if our preprocessors are not None
                 if self.preprocessors is not None:
                     # initialize the list of processed images
-                    procImages = []
+                    proc_images = []
 
                     # loop over the images
                     for image in images:
@@ -57,11 +57,11 @@ class HDF5DatasetGenerator:
                             image = p.preprocess(image)
 
                         # update the list of processed images
-                        procImages.append(image)
+                        proc_images.append(image)
 
                     # update the images array to be the processed
                     # images
-                    images = np.array(procImages)
+                    images = np.array(proc_images)
 
                 # if the data augmenator exists, apply it
                 if self.aug is not None:
