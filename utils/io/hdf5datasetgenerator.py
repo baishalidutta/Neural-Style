@@ -10,7 +10,7 @@ from tensorflow.keras.utils import to_categorical
 
 
 class HDF5DatasetGenerator:
-    def __init__(self, dbPath, batch_size, preprocessors=None,
+    def __init__(self, db_path, batch_size, preprocessors=None,
                  aug=None, binarize=True, classes=2):
         # store the batch size, preprocessors, and data augmentor,
         # whether or not the labels should be binarized, along with
@@ -23,7 +23,7 @@ class HDF5DatasetGenerator:
 
         # open the HDF5 database for reading and determine the total
         # number of entries in the database
-        self.db = h5py.File(dbPath, "r")
+        self.db = h5py.File(db_path, "r")
         self.numImages = self.db["labels"].shape[0]
 
     def generator(self, passes=np.inf):
