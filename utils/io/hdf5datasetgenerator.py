@@ -63,7 +63,7 @@ class HDF5DatasetGenerator:
                     # images
                     images = np.array(proc_images)
 
-                # if the data augmenator exists, apply it
+                # if the data augmentor exists, apply it
                 if self.aug is not None:
                     (images, labels) = next(self.aug.flow(images,
                                                           labels, batch_size=self.batch_size))
