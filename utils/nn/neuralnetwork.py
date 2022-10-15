@@ -46,7 +46,7 @@ class NeuralNetwork:
         # function
         return x * (1 - x)
 
-    def fit(self, X, y, epochs=1000, displayUpdate=100):
+    def fit(self, X, y, epochs=1000, display_update=100):
         # insert a column of 1's as the last entry in the feature
         # matrix -- this little trick allows us to treat the bias
         # as a trainable parameter within the weight matrix
@@ -60,7 +60,7 @@ class NeuralNetwork:
                 self.fit_partial(x, target)
 
             # check to see if we should display a training update
-            if epoch == 0 or (epoch + 1) % displayUpdate == 0:
+            if epoch == 0 or (epoch + 1) % display_update == 0:
                 loss = self.calculate_loss(X, y)
                 print("[INFO] epoch={}, loss={:.7f}".format(
                     epoch + 1, loss))
