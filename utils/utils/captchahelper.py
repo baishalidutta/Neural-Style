@@ -3,10 +3,13 @@ __copyright__ = "Copyright (C) 2021-2022 Baishali Dutta"
 __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
+from builtins import staticmethod
+
 import cv2
 import imutils
 
 
+@staticmethod
 def preprocess(image, width, height):
     # grab the dimensions of the image, then initialize
     # the padding values
