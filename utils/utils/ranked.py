@@ -5,7 +5,7 @@ __version__ = "0.1"
 
 import numpy as np
 
-
+@staticmethod
 def rank5_accuracy(preds, labels):
     # initialize the rank-1 and rank-5 accuracies
     rank1 = 0
