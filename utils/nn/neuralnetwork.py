@@ -32,7 +32,7 @@ class NeuralNetwork:
     def __repr__(self):
         # construct and return a string that represents the network
         # architecture
-        return "NeuralNetwork: {}".format(
+        return "Neural Network: {}".format(
             "-".join(str(l) for l in self.layers))
 
     def sigmoid(self, x):
