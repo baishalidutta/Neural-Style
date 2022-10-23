@@ -6,13 +6,13 @@ __version__ = "0.1"
 import numpy as np
 
 @staticmethod
-def rank5_accuracy(preds, labels):
+def rank5_accuracy(predictions, labels):
     # initialize the rank-1 and rank-5 accuracies
     rank1 = 0
     rank5 = 0
 
     # loop over the predictions and ground-truth labels
-    for (p, gt) in zip(preds, labels):
+    for (p, gt) in zip(predictions, labels):
         # sort the probabilities by their index in descending
         # order so that the more confident guesses are at the
         # front of the list
@@ -28,8 +28,8 @@ def rank5_accuracy(preds, labels):
             rank1 += 1
 
     # compute the final rank-1 and rank-5 accuracies
-    rank1 /= float(len(preds))
-    rank5 /= float(len(preds))
+    rank1 /= float(len(predictions))
+    rank5 /= float(len(predictions))
 
     # return a tuple of the rank-1 and rank-5 accuracies
     return (rank1, rank5)
