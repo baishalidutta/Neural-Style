@@ -44,7 +44,7 @@ def loadImage(imagePath):
 
 
 @tf.function
-def trainOneStep(image, style_targets, content_targets):
+def train_one_step(image, style_targets, content_targets):
     # derive the style and content loss weight values
     style_weight = config.style_weight / len(config.style_layers)
     content_weight = config.content_weight / len(config.content_layers)
@@ -102,7 +102,7 @@ for epoch in range(config.epochs):
     for i in range(config.steps_per_epoch):
         # perform a single training step, then increment our step
         # counter
-        trainOneStep(image, style_targets, content_targets)
+        train_one_step(image, style_targets, content_targets)
         step += 1
 
     # construct the path to the intermediate resulting image (for
